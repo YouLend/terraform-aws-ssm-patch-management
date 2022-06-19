@@ -44,10 +44,10 @@ variable "s3_bucket_name" {
   type        = string
 }
 
-#variable "service_role_arn" {
-#  description = "The sevice role ARN to attach to the Maintenance windows"
-#  type        = string
-#}
+variable "service_role_arn" {
+  description = "The sevice role ARN to attach to the Maintenance windows"
+  type        = string
+}
 
 variable "reboot_option" {
   description = "Parameter 'Reboot Option' to pass to the windows Task Execution. By Default : 'RebootIfNeeded'. Possible values : RebootIfNeeded, NoReboot"

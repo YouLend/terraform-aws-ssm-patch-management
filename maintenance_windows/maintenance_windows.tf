@@ -15,7 +15,7 @@ resource "aws_ssm_maintenance_window_task" "task_scan_patches" {
   task_type        = "RUN_COMMAND"
   task_arn         = "AWS-RunPatchBaseline"
   priority         = var.task_scan_priority
-  #service_role_arn = var.service_role_arn
+  service_role_arn = var.service_role_arn
   max_concurrency  = var.max_concurrency
   max_errors       = var.max_errors
 
@@ -89,7 +89,7 @@ resource "aws_ssm_maintenance_window_task" "task_install_patches" {
   task_type        = "RUN_COMMAND"
   task_arn         = "AWS-RunPatchBaseline"
   priority         = var.task_install_priority
-  #service_role_arn = var.service_role_arn
+  service_role_arn = var.service_role_arn
   max_concurrency  = var.max_concurrency
   max_errors       = var.max_errors
 
@@ -99,6 +99,9 @@ resource "aws_ssm_maintenance_window_task" "task_install_patches" {
   }
 
   task_invocation_parameters {
+    automation_parameters {
+      document_version = "$DEFAULT"
+    }
     run_command_parameters {
       parameter {
         name   = "Operation"
