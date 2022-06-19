@@ -99,9 +99,7 @@ resource "aws_ssm_maintenance_window_task" "task_install_patches" {
   }
 
   task_invocation_parameters {
-    automation_parameters {
-      document_version = "$DEFAULT"
-    }
+    
     run_command_parameters {
       parameter {
         name   = "Operation"
@@ -113,6 +111,8 @@ resource "aws_ssm_maintenance_window_task" "task_install_patches" {
       }
       output_s3_bucket     = var.s3_bucket_name
       output_s3_key_prefix = var.s3_bucket_prefix_install_logs
+
+      document_hash = "a1e1145c11a3197a555daf57a011f7b2527137ffef653739988003ee7be733f6"
 
       service_role_arn = var.role_arn_for_notification
       dynamic "notification_config" {
